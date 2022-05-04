@@ -39,25 +39,7 @@ def test_model(test_dataloader, model, device, loss_fcn):
         #print(f"F1-Score on testset:        {mean_score:.4f}")
     model.train()
     return mean_score
-
-
-def generate_label(t_model, subgraph, feats, device):
-    '''generate pseudo lables given a teacher model
-    '''
-    # t_model.to(device)
-    t_model.eval()
-    with torch.no_grad():
-        t_model.g = subgraph
-        for layer in t_model.gat_layers:
-            layer.g = subgraph
-        # soft labels
-        logits_t = t_model(feats.float())
-        #pseudo_labels = torch.where(t_logits>0.5, 
-        #                            torch.ones(t_logits.shape).to(device), 
-        #                            torch.zeros(t_logits.shape).to(device))
-        #labels = logits_t
-    return logits_t.detach()
-    
+  
 
 def evaluate_model(valid_dataloader, train_dataloader, device, s_model, loss_fcn):
     score_list = []
