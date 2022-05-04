@@ -76,25 +76,6 @@ def collate_w_gk(sample):
     feats = torch.from_numpy(np.concatenate(feats))
     labels = torch.from_numpy(np.concatenate(labels))
     return graph, feats, labels, graph_gk
-
-
-def get_teacher(args, data_info):
-    '''args holds the common arguments
-    data_info holds some special arugments
-    '''
-    heads = ([args.t_num_heads] * args.t_num_layers) + [args.t_num_out_heads]
-    model = GAT(data_info['g'],
-            args.t_num_layers,
-            data_info['num_feats'],
-            args.t_num_hidden,
-            data_info['n_classes'],
-            heads,
-            F.elu,
-            args.in_drop,
-            args.attn_drop,
-            args.alpha,
-            args.residual)
-    return model
     
 def get_student(args, data_info):
     '''args holds the common arguments
