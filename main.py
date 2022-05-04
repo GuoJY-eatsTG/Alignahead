@@ -20,7 +20,9 @@ import random
 torch.set_num_threads(1)
 
 def graph_KLDiv(graph, edgex, edgey, reduce='mean'):
-
+    '''
+    compute the KL loss for each edges set, used after edge_softmax
+    '''
     with graph.local_scope():
         nnode = graph.number_of_nodes()
         graph.ndata.update({'kldiv': torch.ones(nnode,1).to(edgex.device)})
@@ -197,5 +199,6 @@ if __name__ == '__main__':
           'model_num' + '_' +  str(args.model_num) + '_'+\
           's_layers' + '_' +  str(args.s_num_layers) + '_'+\
           'model' + '_' +  str(args.model_name) + '_'+\
+          'strategy' + '_' +  str(args.strategy) + '_'+\
           'seed'+ str(args.seed) +'.txt'   
     main(args)
