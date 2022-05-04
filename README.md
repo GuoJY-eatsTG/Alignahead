@@ -3,6 +3,8 @@
 This repo covers the implementation of the following IJCNN 2022 paper:
 Alignahead: Online Cross-Layer Knowledge Extraction on Graph Neural Networks
 
+![Alignahead](./pic/Alignahead.pdf)
+
 ## Installation
 This repo was tested with Python 3.7, PyTorch 1.7.0, CUDA 10.1 and dgl 0.4.2.
 
